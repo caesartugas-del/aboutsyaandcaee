@@ -21,23 +21,23 @@
         }
 
         :root {
-            --color-cream-bg: #fdfbf7;
-            --color-cream-light: #faf8f5;
-            --color-beige: #f4f0e6;
+            --color-cream-bg: #fff4f6; /* Very soft pink cream */
+            --color-cream-light: #fffafb; /* Lighter soft pink cream */
+            --color-beige: #ffe3e7; /* Soft pink-accented beige */
             --color-white: #ffffff;
-            --color-gold: #c5a880;
-            --color-gold-hover: #b3946b;
-            --color-sage: #8e9e8c;
-            --color-dark: #3e3327;
-            --color-dark-muted: #6e5e4f;
+            --color-gold: #ff9db4; /* Rose/soft pink gold */
+            --color-gold-hover: #ff7e9a; /* Darker pink gold */
+            --color-sage: #a8bfa6; /* Soft green */
+            --color-dark: #503d42; /* Soft dark brownish-pink */
+            --color-dark-muted: #80656a; /* Muted brown-pink */
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Outfit', sans-serif;
             --font-quotes: 'Quicksand', sans-serif;
             --font-cursive: 'Caveat', cursive;
             --transition-smooth: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             --transition-fast: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --shadow-premium: 0 15px 35px rgba(62, 51, 39, 0.08), 0 5px 15px rgba(62, 51, 39, 0.04);
-            --shadow-glass: 0 8px 32px 0 rgba(197, 168, 128, 0.1);
+            --shadow-premium: 0 15px 35px rgba(80, 61, 66, 0.08), 0 5px 15px rgba(80, 61, 66, 0.04);
+            --shadow-glass: 0 8px 32px 0 rgba(255, 157, 180, 0.15);
         }
 
         html {
@@ -1895,6 +1895,83 @@
             50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
             100% { transform: scale(0.8) rotate(360deg); opacity: 0.5; }
         }
+
+        /* EXTRA CUTE DECORATIONS */
+        .polaroid-card-wrapper::before {
+            content: '🎀';
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-5deg);
+            font-size: 2.4rem;
+            z-index: 20;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            animation: floatSticker 2.5s ease-in-out infinite alternate;
+        }
+
+        .cursor-sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 1.2rem;
+            animation: fadeOutSparkle 0.8s forwards ease-out;
+        }
+
+        @keyframes fadeOutSparkle {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -150%) scale(0.4) rotate(45deg); opacity: 0; }
+        }
+
+        .decor-ribbon-left { position: absolute; top: 12%; left: 6%; font-size: 2.6rem; opacity: 0.85; z-index: 5; pointer-events: none; animation: floatSticker 3.5s ease-in-out infinite alternate; }
+        .decor-teddy-right { position: absolute; top: 16%; right: 7%; font-size: 2.6rem; opacity: 0.85; z-index: 5; pointer-events: none; animation: floatSticker 4s ease-in-out infinite alternate-reverse; }
+        .decor-flower-bottom { position: absolute; bottom: 8%; left: 12%; font-size: 2.2rem; opacity: 0.85; z-index: 5; pointer-events: none; animation: floatSticker 3s ease-in-out infinite alternate; }
+        .decor-sparkle-top { position: absolute; top: 5%; left: 35%; font-size: 2rem; opacity: 0.8; z-index: 5; pointer-events: none; animation: floatSticker 2.8s ease-in-out infinite alternate-reverse; }
+        .decor-butterfly-left { position: absolute; bottom: 15%; left: 8%; font-size: 2.4rem; opacity: 0.8; z-index: 5; pointer-events: none; animation: floatSticker 3.2s ease-in-out infinite alternate; }
+        .decor-star-right { position: absolute; bottom: 20%; right: 8%; font-size: 2.2rem; opacity: 0.85; z-index: 5; pointer-events: none; animation: floatSticker 3.8s ease-in-out infinite alternate-reverse; }
+        
+        /* Modify existing corner-ornament color */
+        .corner-ornament {
+            color: var(--color-gold) !important;
+        }
+        
+        /* Polaroid border & shadow refinement */
+        .polaroid-card {
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 30px rgba(255, 157, 180, 0.15) !important;
+        }
+        .polaroid-back {
+            border: 6px solid #ffffff;
+        }
+
+        /* ROTATING BACKGROUND FLOWERS */
+        .bg-flower-rotate {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            color: var(--color-gold);
+            opacity: 0.07;
+            pointer-events: none;
+            z-index: 1;
+            transform-origin: center center;
+        }
+
+        .bg-flower-spin-clockwise {
+            animation: spinCW 35s linear infinite;
+        }
+
+        .bg-flower-spin-counter {
+            animation: spinCCW 45s linear infinite;
+        }
+
+        @keyframes spinCW {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spinCCW {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+        }
     </style>
 </head>
 <body>
@@ -1968,6 +2045,33 @@
         <!-- SLIDE 1: WELCOME INTRO -->
         <section class="story-slide" id="welcome">
             <div class="page-border-frame"></div>
+            <!-- Background Rotating Flowers -->
+            <div class="bg-flower-rotate bg-flower-spin-clockwise" style="top: -60px; left: -60px; width: 280px; height: 280px;">
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <circle cx="50" cy="30" r="18" fill="currentColor" />
+                    <circle cx="50" cy="70" r="18" fill="currentColor" />
+                    <circle cx="30" cy="50" r="18" fill="currentColor" />
+                    <circle cx="70" cy="50" r="18" fill="currentColor" />
+                    <circle cx="36" cy="36" r="18" fill="currentColor" />
+                    <circle cx="64" cy="64" r="18" fill="currentColor" />
+                    <circle cx="64" cy="36" r="18" fill="currentColor" />
+                    <circle cx="36" cy="64" r="18" fill="currentColor" />
+                    <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.4" />
+                </svg>
+            </div>
+            <div class="bg-flower-rotate bg-flower-spin-counter" style="bottom: -80px; right: -80px; width: 320px; height: 320px; opacity: 0.05;">
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <circle cx="50" cy="30" r="18" fill="currentColor" />
+                    <circle cx="50" cy="70" r="18" fill="currentColor" />
+                    <circle cx="30" cy="50" r="18" fill="currentColor" />
+                    <circle cx="70" cy="50" r="18" fill="currentColor" />
+                    <circle cx="36" cy="36" r="18" fill="currentColor" />
+                    <circle cx="64" cy="64" r="18" fill="currentColor" />
+                    <circle cx="64" cy="36" r="18" fill="currentColor" />
+                    <circle cx="36" cy="64" r="18" fill="currentColor" />
+                    <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.4" />
+                </svg>
+            </div>
             <div class="corner-ornament corner-top-left"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
             <div class="corner-ornament corner-top-right"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
             <div class="corner-ornament corner-bottom-left"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
@@ -2095,7 +2199,35 @@
 
         <!-- SLIDE 2: VESPA DATE (PHOTO 1) -->
         <section class="story-slide" id="vespa-slide">
+            <div class="decor-sparkle-top">✨</div><div class="decor-butterfly-left">🦋</div>
             <div class="page-border-frame"></div>
+            <!-- Background Rotating Flowers -->
+            <div class="bg-flower-rotate bg-flower-spin-clockwise" style="top: -60px; left: -60px; width: 280px; height: 280px;">
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <circle cx="50" cy="30" r="18" fill="currentColor" />
+                    <circle cx="50" cy="70" r="18" fill="currentColor" />
+                    <circle cx="30" cy="50" r="18" fill="currentColor" />
+                    <circle cx="70" cy="50" r="18" fill="currentColor" />
+                    <circle cx="36" cy="36" r="18" fill="currentColor" />
+                    <circle cx="64" cy="64" r="18" fill="currentColor" />
+                    <circle cx="64" cy="36" r="18" fill="currentColor" />
+                    <circle cx="36" cy="64" r="18" fill="currentColor" />
+                    <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.4" />
+                </svg>
+            </div>
+            <div class="bg-flower-rotate bg-flower-spin-counter" style="bottom: -80px; right: -80px; width: 320px; height: 320px; opacity: 0.05;">
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <circle cx="50" cy="30" r="18" fill="currentColor" />
+                    <circle cx="50" cy="70" r="18" fill="currentColor" />
+                    <circle cx="30" cy="50" r="18" fill="currentColor" />
+                    <circle cx="70" cy="50" r="18" fill="currentColor" />
+                    <circle cx="36" cy="36" r="18" fill="currentColor" />
+                    <circle cx="64" cy="64" r="18" fill="currentColor" />
+                    <circle cx="64" cy="36" r="18" fill="currentColor" />
+                    <circle cx="36" cy="64" r="18" fill="currentColor" />
+                    <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.4" />
+                </svg>
+            </div>
             <div class="corner-ornament corner-top-left"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
             <div class="corner-ornament corner-top-right"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
             <div class="corner-ornament corner-bottom-left"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
@@ -2212,7 +2344,35 @@
 
         <!-- SLIDE 3: BIRTHDAY COLLAGE (PHOTO 2) -->
         <section class="story-slide" id="birthday-slide">
+            <div class="decor-ribbon-left">🎀</div><div class="decor-star-right">🌟</div>
             <div class="page-border-frame"></div>
+            <!-- Background Rotating Flowers -->
+            <div class="bg-flower-rotate bg-flower-spin-clockwise" style="top: -60px; left: -60px; width: 280px; height: 280px;">
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <circle cx="50" cy="30" r="18" fill="currentColor" />
+                    <circle cx="50" cy="70" r="18" fill="currentColor" />
+                    <circle cx="30" cy="50" r="18" fill="currentColor" />
+                    <circle cx="70" cy="50" r="18" fill="currentColor" />
+                    <circle cx="36" cy="36" r="18" fill="currentColor" />
+                    <circle cx="64" cy="64" r="18" fill="currentColor" />
+                    <circle cx="64" cy="36" r="18" fill="currentColor" />
+                    <circle cx="36" cy="64" r="18" fill="currentColor" />
+                    <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.4" />
+                </svg>
+            </div>
+            <div class="bg-flower-rotate bg-flower-spin-counter" style="bottom: -80px; right: -80px; width: 320px; height: 320px; opacity: 0.05;">
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <circle cx="50" cy="30" r="18" fill="currentColor" />
+                    <circle cx="50" cy="70" r="18" fill="currentColor" />
+                    <circle cx="30" cy="50" r="18" fill="currentColor" />
+                    <circle cx="70" cy="50" r="18" fill="currentColor" />
+                    <circle cx="36" cy="36" r="18" fill="currentColor" />
+                    <circle cx="64" cy="64" r="18" fill="currentColor" />
+                    <circle cx="64" cy="36" r="18" fill="currentColor" />
+                    <circle cx="36" cy="64" r="18" fill="currentColor" />
+                    <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.4" />
+                </svg>
+            </div>
             <div class="corner-ornament corner-top-left"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
             <div class="corner-ornament corner-top-right"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
             <div class="corner-ornament corner-bottom-left"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
@@ -2327,7 +2487,35 @@
 
         <!-- SLIDE 4: PHOTOBOOTH STRIPS (PHOTO 3) -->
         <section class="story-slide" id="photobooth-slide">
+            <div class="decor-teddy-right">🧸</div><div class="decor-flower-bottom">🌸</div>
             <div class="page-border-frame"></div>
+            <!-- Background Rotating Flowers -->
+            <div class="bg-flower-rotate bg-flower-spin-clockwise" style="top: -60px; left: -60px; width: 280px; height: 280px;">
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <circle cx="50" cy="30" r="18" fill="currentColor" />
+                    <circle cx="50" cy="70" r="18" fill="currentColor" />
+                    <circle cx="30" cy="50" r="18" fill="currentColor" />
+                    <circle cx="70" cy="50" r="18" fill="currentColor" />
+                    <circle cx="36" cy="36" r="18" fill="currentColor" />
+                    <circle cx="64" cy="64" r="18" fill="currentColor" />
+                    <circle cx="64" cy="36" r="18" fill="currentColor" />
+                    <circle cx="36" cy="64" r="18" fill="currentColor" />
+                    <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.4" />
+                </svg>
+            </div>
+            <div class="bg-flower-rotate bg-flower-spin-counter" style="bottom: -80px; right: -80px; width: 320px; height: 320px; opacity: 0.05;">
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <circle cx="50" cy="30" r="18" fill="currentColor" />
+                    <circle cx="50" cy="70" r="18" fill="currentColor" />
+                    <circle cx="30" cy="50" r="18" fill="currentColor" />
+                    <circle cx="70" cy="50" r="18" fill="currentColor" />
+                    <circle cx="36" cy="36" r="18" fill="currentColor" />
+                    <circle cx="64" cy="64" r="18" fill="currentColor" />
+                    <circle cx="64" cy="36" r="18" fill="currentColor" />
+                    <circle cx="36" cy="64" r="18" fill="currentColor" />
+                    <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.4" />
+                </svg>
+            </div>
             <div class="corner-ornament corner-top-left"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
             <div class="corner-ornament corner-top-right"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
             <div class="corner-ornament corner-bottom-left"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
@@ -2441,7 +2629,35 @@
 
         <!-- SLIDE 5: DRIED ROSES (PHOTO 4) -->
         <section class="story-slide" id="roses-slide">
+            <div class="decor-butterfly-left">🦋</div><div class="decor-sparkle-top">✨</div>
             <div class="page-border-frame"></div>
+            <!-- Background Rotating Flowers -->
+            <div class="bg-flower-rotate bg-flower-spin-clockwise" style="top: -60px; left: -60px; width: 280px; height: 280px;">
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <circle cx="50" cy="30" r="18" fill="currentColor" />
+                    <circle cx="50" cy="70" r="18" fill="currentColor" />
+                    <circle cx="30" cy="50" r="18" fill="currentColor" />
+                    <circle cx="70" cy="50" r="18" fill="currentColor" />
+                    <circle cx="36" cy="36" r="18" fill="currentColor" />
+                    <circle cx="64" cy="64" r="18" fill="currentColor" />
+                    <circle cx="64" cy="36" r="18" fill="currentColor" />
+                    <circle cx="36" cy="64" r="18" fill="currentColor" />
+                    <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.4" />
+                </svg>
+            </div>
+            <div class="bg-flower-rotate bg-flower-spin-counter" style="bottom: -80px; right: -80px; width: 320px; height: 320px; opacity: 0.05;">
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <circle cx="50" cy="30" r="18" fill="currentColor" />
+                    <circle cx="50" cy="70" r="18" fill="currentColor" />
+                    <circle cx="30" cy="50" r="18" fill="currentColor" />
+                    <circle cx="70" cy="50" r="18" fill="currentColor" />
+                    <circle cx="36" cy="36" r="18" fill="currentColor" />
+                    <circle cx="64" cy="64" r="18" fill="currentColor" />
+                    <circle cx="64" cy="36" r="18" fill="currentColor" />
+                    <circle cx="36" cy="64" r="18" fill="currentColor" />
+                    <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.4" />
+                </svg>
+            </div>
             <div class="corner-ornament corner-top-left"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
             <div class="corner-ornament corner-top-right"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
             <div class="corner-ornament corner-bottom-left"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
@@ -2530,7 +2746,35 @@
 
         <!-- SLIDE 6: BIRTHDAY WISHES (PHOTO 5) -->
         <section class="story-slide" id="wish-slide">
+            <div class="decor-ribbon-left">🎀</div><div class="decor-teddy-right">🎈</div>
             <div class="page-border-frame"></div>
+            <!-- Background Rotating Flowers -->
+            <div class="bg-flower-rotate bg-flower-spin-clockwise" style="top: -60px; left: -60px; width: 280px; height: 280px;">
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <circle cx="50" cy="30" r="18" fill="currentColor" />
+                    <circle cx="50" cy="70" r="18" fill="currentColor" />
+                    <circle cx="30" cy="50" r="18" fill="currentColor" />
+                    <circle cx="70" cy="50" r="18" fill="currentColor" />
+                    <circle cx="36" cy="36" r="18" fill="currentColor" />
+                    <circle cx="64" cy="64" r="18" fill="currentColor" />
+                    <circle cx="64" cy="36" r="18" fill="currentColor" />
+                    <circle cx="36" cy="64" r="18" fill="currentColor" />
+                    <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.4" />
+                </svg>
+            </div>
+            <div class="bg-flower-rotate bg-flower-spin-counter" style="bottom: -80px; right: -80px; width: 320px; height: 320px; opacity: 0.05;">
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <circle cx="50" cy="30" r="18" fill="currentColor" />
+                    <circle cx="50" cy="70" r="18" fill="currentColor" />
+                    <circle cx="30" cy="50" r="18" fill="currentColor" />
+                    <circle cx="70" cy="50" r="18" fill="currentColor" />
+                    <circle cx="36" cy="36" r="18" fill="currentColor" />
+                    <circle cx="64" cy="64" r="18" fill="currentColor" />
+                    <circle cx="64" cy="36" r="18" fill="currentColor" />
+                    <circle cx="36" cy="64" r="18" fill="currentColor" />
+                    <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.4" />
+                </svg>
+            </div>
             <div class="corner-ornament corner-top-left"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
             <div class="corner-ornament corner-top-right"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
             <div class="corner-ornament corner-bottom-left"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
@@ -2670,10 +2914,38 @@
 
         <!-- SLIDE 7: OUR LOVE SANCTUARY (GRAND FINALE) -->
         <section class="story-slide" id="sanctuary-slide" style="cursor: pointer;">
+            <div class="decor-flower-bottom">🌸</div><div class="decor-star-right">💖</div>
             <!-- Spawner interactive area (full screen click spawns flowers/balloons) -->
             <div class="garden-interactive-area" id="spawner-canvas-area" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:1;"></div>
             
             <div class="page-border-frame"></div>
+            <!-- Background Rotating Flowers -->
+            <div class="bg-flower-rotate bg-flower-spin-clockwise" style="top: -60px; left: -60px; width: 280px; height: 280px;">
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <circle cx="50" cy="30" r="18" fill="currentColor" />
+                    <circle cx="50" cy="70" r="18" fill="currentColor" />
+                    <circle cx="30" cy="50" r="18" fill="currentColor" />
+                    <circle cx="70" cy="50" r="18" fill="currentColor" />
+                    <circle cx="36" cy="36" r="18" fill="currentColor" />
+                    <circle cx="64" cy="64" r="18" fill="currentColor" />
+                    <circle cx="64" cy="36" r="18" fill="currentColor" />
+                    <circle cx="36" cy="64" r="18" fill="currentColor" />
+                    <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.4" />
+                </svg>
+            </div>
+            <div class="bg-flower-rotate bg-flower-spin-counter" style="bottom: -80px; right: -80px; width: 320px; height: 320px; opacity: 0.05;">
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <circle cx="50" cy="30" r="18" fill="currentColor" />
+                    <circle cx="50" cy="70" r="18" fill="currentColor" />
+                    <circle cx="30" cy="50" r="18" fill="currentColor" />
+                    <circle cx="70" cy="50" r="18" fill="currentColor" />
+                    <circle cx="36" cy="36" r="18" fill="currentColor" />
+                    <circle cx="64" cy="64" r="18" fill="currentColor" />
+                    <circle cx="64" cy="36" r="18" fill="currentColor" />
+                    <circle cx="36" cy="64" r="18" fill="currentColor" />
+                    <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.4" />
+                </svg>
+            </div>
             <div class="corner-ornament corner-top-left"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
             <div class="corner-ornament corner-top-right"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
             <div class="corner-ornament corner-bottom-left"><svg viewBox="0 0 100 100"><path d="M0,0 L100,0 C80,20 60,30 50,50 C30,60 20,80 0,100 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10,10 C20,15 25,25 25,35 C20,35 15,30 10,20" fill="currentColor"/><path d="M10,10 C15,20 25,25 35,25 C35,20 30,15 20,10" fill="currentColor"/><circle cx="15" cy="15" r="3" fill="currentColor"/><circle cx="28" cy="28" r="4" fill="currentColor"/></svg></div>
@@ -3320,6 +3592,28 @@
             });
 
             // Redundant handlers removed as they are handled by main click event listeners
+
+            // ==========================================
+            // CUTE MOUSE CURSOR TRAILING SPARKLES
+            // ==========================================
+            const cursorEmojis = ['💖', '✨', '🌸', '🎀', '⭐'];
+            let lastMouseTime = 0;
+            document.addEventListener('mousemove', (e) => {
+                const now = Date.now();
+                if (now - lastMouseTime < 50) return; // rate limit sparkle spawn
+                lastMouseTime = now;
+                
+                const sparkle = document.createElement('span');
+                sparkle.className = 'cursor-sparkle';
+                sparkle.style.left = `${e.clientX}px`;
+                sparkle.style.top = `${e.clientY}px`;
+                
+                const emoji = cursorEmojis[Math.floor(Math.random() * cursorEmojis.length)];
+                sparkle.textContent = emoji;
+                
+                document.body.appendChild(sparkle);
+                setTimeout(() => { sparkle.remove(); }, 800);
+            });
         });
     </script>
 </body>
